@@ -17,12 +17,15 @@ use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 
 Route::get('/', [GuestHomeController::class, 'index']);
 
-Route::get('/admin', [AdminHomeController::class, 'index'])->middleware(['auth'])->name('admin.home');
+Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function () {
+    Route::get('/', [AdminHomeController::class, 'index'])->name('home');
+});
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+Route::middleware('auth')->name('profile.')->prefix('/profile')->group(function () {
+    Route::get('/', [ProfileController::class, 'edit'])->name('edit');
+    Route::patch('/', [ProfileController::class, 'update'])->name('update');
+    Route::delete('/', [ProfileController::class, 'destroy'])->name('destroy');
 });
 
 require __DIR__ . '/auth.php';
