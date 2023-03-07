@@ -13,7 +13,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::all();
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -29,15 +30,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $project = new Project();
+        $project->fill($data);
+        $project->save();
+        return to_route('admin.projects.show', $project->id);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Project $project)
+    public function show(string $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('admin.projects.show', compact('project'));
     }
 
     /**
