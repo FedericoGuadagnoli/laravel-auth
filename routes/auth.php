@@ -15,7 +15,7 @@ Route::middleware('guest')->group(function () {
 
     // Commento le rotte di registrazioni per evitare che qualcun'altro si registri
     // Route::get('register', [RegisteredUserController::class, 'create'])
-    //             ->name('register');
+    //     ->name('register');
 
     // Route::post('register', [RegisteredUserController::class, 'store']);
 
