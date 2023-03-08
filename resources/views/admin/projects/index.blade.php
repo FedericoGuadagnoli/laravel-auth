@@ -5,6 +5,11 @@
 @section('content')
 <section id="projects">
     <div class="container py-5 mt-5">
+        <div class="text-center my-4">
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-success">
+            <i class="fas fa-plus me-2"></i> Crea nuovo progetto
+            </a>
+        </div>
         <div class="row d-flex g-5 flex-wrap">
             @foreach ($projects as $project)
                 <div class="col-6 my-5" style="height: 400px;">
