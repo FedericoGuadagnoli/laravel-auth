@@ -9,9 +9,9 @@
             @foreach ($projects as $project)
                 <div class="col-6" style="height: 400px;">
                     <a href="{{ route('admin.projects.show', $project['id']) }}" style="text-decoration: none; color:black">
-                        <div class="card d-flex flex-column-reverse align-items-center h-100 justify-content-between">                      
+                        <div class="card d-flex flex-column-reverse align-items-center h-100 justify-content-between">                     
                             <figure class="text-center h-50 w-100">
-                                <img src="{{ asset($project->image) }}" alt="{{$project->title}}" class="img-fluid h-100">
+                                <img src="{{ $project->image }}" alt="{{$project->title}}" class="img-fluid h-100">
                             </figure>
                             <div class="info text-center">
                                 <h1>Progetto {{$project->title}}</h1>
