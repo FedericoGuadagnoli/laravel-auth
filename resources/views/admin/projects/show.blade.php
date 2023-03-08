@@ -15,8 +15,13 @@
               <img src="{{ $project->image }}" class="card-img-bottom img-fluid w-50" alt="{{ $project->title }}">
           </figure>
         </div>
-        <div class="w-100 text-center">
-            <a href="{{ route('admin.projects.index') }}" class="btn btn-primary mt-5">Indietro</a>
+        <div class="w-100 d-flex justify-content-center align-items-center py-3 gap-3">
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-primary"><i class="fa-solid fa-arrow-left me-2"></i>Indietro</a>
+            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button class="btn btn-danger" type="submit"><i class="fa-solid fa-trash"></i></button>
+            </form>
         </div>
     </div>
 </section>  
