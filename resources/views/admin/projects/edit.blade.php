@@ -7,7 +7,7 @@
     <h1>Modifica il progetto</h1>
 </header>
     
-<form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+<form action="{{ route('admin.projects.update', $project->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="container">
@@ -23,8 +23,7 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <label for="image" class="form-label">Immagine</label>
-                <input type="url" class="form-control bg-dark text-light" id="image" name="image" value="{{ $project->image }}">
-                <small class="text-muted">Incolla l'url dell'immagine</small>
+                <input type="file" class="form-control bg-dark text-light" id="image" name="image">
             </div>
         </div>    
     </div>
@@ -32,7 +31,7 @@
         <div class="col-md-6">   
             <div class="mb-3">
                 <label for="link_github" class="form-label">Link github</label>
-                <input type="url" class="form-control bg-dark text-light" id="link_github" name="link_github" value="{{ $project->link_github }}>
+                <input type="url" class="form-control bg-dark text-light" id="link_github" name="link_github" value="{{ $project->link_github }}">
                 <small class="text-muted">Incolla l'url del link a github</small>
             </div>
         </div>
