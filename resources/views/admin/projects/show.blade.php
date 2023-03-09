@@ -12,7 +12,7 @@
               <a href="{{ $project->link_github }}" class="btn btn-primary">Link GitHub</a>
           </div>
           <figure class="text-center">
-              <img src="{{ $project->image }}" class="card-img-bottom img-fluid w-50" alt="{{ $project->title }}">
+              <img src="{{ asset('storage/' . $project->image) }}" class="card-img-bottom img-fluid w-50" alt="{{ $project->title }}">
           </figure>
         </div>
         <div class="w-100 d-flex justify-content-center align-items-center py-3 gap-3">
