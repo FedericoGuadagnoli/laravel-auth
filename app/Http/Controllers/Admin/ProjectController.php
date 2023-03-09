@@ -6,6 +6,8 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -15,6 +17,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -34,6 +37,11 @@ class ProjectController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
         $project = new Project();
+        if (Arr::exists($data, 'image')) {
+            $img_url = Storage::put('projects', $data['image']);
+            $data['image'] = $img_url;
+        }
+
         $project->fill($data);
         $project->save();
         return to_route('admin.projects.show', $project->id);
@@ -63,6 +71,11 @@ class ProjectController extends Controller
     {
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
+        if (Arr::exists($data, 'image')) {
+            if ($project->image) Storage::delete($project->image);
+            $img_url = Storage::put('projects', $data['image']);
+            $data['image'] = $img_url;
+        }
         $project->update($data);
         return to_route('admin.projects.show', $project->id);
     }
