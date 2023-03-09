@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Crea nuovo progetto')
+@section('title', 'Modifica progetto')
     
 @section('content')
 <header class="text-center my-5">
